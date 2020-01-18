@@ -1,0 +1,3 @@
+[submodule "WmiConsoleParser"]
+	path = WmiConsoleParser
+	url = https://github.com/maksgithub/WmiConsoleParser.git
