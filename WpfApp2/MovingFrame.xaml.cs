@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace WpfApp2
@@ -48,12 +52,37 @@ namespace WpfApp2
         }
 
         public static readonly DependencyProperty TopProperty = DependencyProperty.Register(
-            "Top", typeof(double), typeof(MovingFrame), new PropertyMetadata(default(double)));
+            "Top", typeof(double), typeof(MovingFrame), new PropertyMetadata(default(double), PropertyChangedCallback));
+
+        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is MovingFrame m)
+            {
+                var c = m.MoveFrame;
+                var top = Canvas.GetTop(c);
+                var left = Canvas.GetLeft(c);
+                var center = new Point(left + c.Width / 2, top + c.Height / 2);
+                Matrix myMatrix = new Matrix();
+                myMatrix.RotateAt(45, center.X, center.Y);
+                var point = new Point(left, top);
+                point = myMatrix.Transform(point);
+                Trace.TraceInformation("TOP_LEFT:" + point.ToString());
+                //Trace.TraceInformation(new Point(top, left).ToString());
+            }
+        }
+
+
 
         public double Top
         {
             get { return (double) GetValue(TopProperty); }
             set { SetValue(TopProperty, value); }
+        }
+
+        private void Thumb_OnDragDelta(object sender, DragDeltaEventArgs e)
+        {
+            var c = Canvas.GetTop(MoveFrame as UIElement);
+            //Trace.TraceInformation(c.ToString());
         }
     }
 }

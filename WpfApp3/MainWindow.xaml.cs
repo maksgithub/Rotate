@@ -36,7 +36,9 @@ namespace WpfApp3
             DrawLine2(points);
             Matrix myMatrix = new Matrix();
             myMatrix.RotateAt(45, 50, 50);
-            myMatrix.Transform(points);
+            var point = new Point(0,0);
+            ;
+            points[0] = myMatrix.Transform(point);
             DrawLine2(points);
         }
 

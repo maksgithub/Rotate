@@ -12,6 +12,7 @@
         <TextBlock Text="{Binding Left, ElementName=MovingFrame}"></TextBlock>
         <TextBlock Text="{Binding Top, ElementName=MovingFrame}"></TextBlock>
         <local:MovingFrame x:Name="MovingFrame" 
+                           Margin="100"
                            Width="1083"
                            Height="1010" 
                            Top="45"
