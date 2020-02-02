@@ -26,6 +26,7 @@
                                 </local:MoveThumb.Style>
                             </local:MoveThumb>
                             <Control x:Name="resizer" Foreground="{TemplateBinding Foreground}">
+                             
                                 <Control.Style>
                                     <Style TargetType="{x:Type Control}">
                                         <Setter Property="Template">
@@ -76,6 +77,12 @@
 
     <ContentControl Width="{Binding FrameWidth, RelativeSource={RelativeSource AncestorType={x:Type local:MovingFrame}}, Mode=TwoWay}"
                     Height="{Binding FrameHeight, RelativeSource={RelativeSource AncestorType={x:Type local:MovingFrame}}, Mode=TwoWay}" 
-                    Canvas.Left="0" Canvas.Top="0"
-                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:MovingFrame}}}" />
+                    Canvas.Left="110" Canvas.Top="110"
+                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:MovingFrame}}}" >
+        <ContentControl.RenderTransform>
+            <TransformGroup>
+                <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
+            </TransformGroup>
+        </ContentControl.RenderTransform>
+    </ContentControl>
 </Canvas>

@@ -9,13 +9,13 @@
     <StackPanel>
         <TextBlock Text="{Binding FrameWidth, ElementName=MovingFrame}"></TextBlock>
         <TextBlock Text="{Binding FrameHeight, ElementName=MovingFrame}"></TextBlock>
-        <local:MovingFrame Width="183" 
-                           x:Name="MovingFrame"
-                           Height="110" 
+        <local:MovingFrame x:Name="MovingFrame" 
+                           Width="1083"
+                           Height="1010" 
                            Background="Red" 
                            Foreground="Transparent"
-                           FrameWidth="400"
-                           FrameHeight="400"/>
+                           FrameWidth="100"
+                           FrameHeight="100"/>
     </StackPanel>
 
 
