@@ -11,7 +11,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ContentControl}">
-                        <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+                        <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" Background="Aqua">
                             <local:MoveThumb Cursor="SizeAll" Foreground="{TemplateBinding Foreground}">
                                 <local:MoveThumb.Style>
                                     <Style TargetType="{x:Type local:MoveThumb}">
@@ -56,12 +56,12 @@
                                                                 </Style>
                                                             </Grid.Resources>
                                                             <Rectangle SnapsToDevicePixels="True" StrokeThickness="1" Margin="1" Stroke="Black"  StrokeDashArray="4 4"/>
-                                                            <Ellipse  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                            <Ellipse  HorizontalAlignment="Left" VerticalAlignment="Top" Stroke="Red" Fill="Gold"/>
                                                             <Ellipse  HorizontalAlignment="Right" VerticalAlignment="Top"/>
                                                             <Ellipse HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                                                             <Ellipse  HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                                        </Grid>
                                                     </Grid>
+                                                        </Grid>
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
@@ -77,8 +77,10 @@
 
     <ContentControl Width="{Binding FrameWidth, RelativeSource={RelativeSource AncestorType={x:Type local:MovingFrame}}, Mode=TwoWay}"
                     Height="{Binding FrameHeight, RelativeSource={RelativeSource AncestorType={x:Type local:MovingFrame}}, Mode=TwoWay}" 
-                    Canvas.Left="110" Canvas.Top="110"
+                    Canvas.Left="{Binding Left, RelativeSource={RelativeSource AncestorType={x:Type local:MovingFrame}}, Mode=TwoWay}" 
+                    Canvas.Top="{Binding Top, RelativeSource={RelativeSource AncestorType={x:Type local:MovingFrame}}, Mode=TwoWay}" 
                     RenderTransformOrigin="0.5, 0.5"
+                    Background="Gold"
                     Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:MovingFrame}}}" >
         <ContentControl.RenderTransform>
                 <RotateTransform Angle="45"/>
