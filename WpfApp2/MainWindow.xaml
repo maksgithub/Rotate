@@ -95,7 +95,7 @@
 
     </Window.Resources>
 
-    <Canvas>
+    <Canvas Width="200" Height="100" Background="Red">
         <ContentControl Width="183" Height="110"  Canvas.Left="166" Canvas.Top="50" />
     </Canvas>
 </Window>

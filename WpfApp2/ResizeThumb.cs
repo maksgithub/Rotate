@@ -9,14 +9,12 @@ namespace WpfApp2
     {
         public ResizeThumb()
         {
-            DragDelta += new DragDeltaEventHandler(this.ResizeThumb_DragDelta);
+            DragDelta += ResizeThumb_DragDelta;
         }
 
         private void ResizeThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            Control designerItem = this.DataContext as Control;
-
-            if (designerItem != null)
+            if (DataContext is Control designerItem)
             {
                 double deltaVertical, deltaHorizontal;
 
@@ -31,8 +29,6 @@ namespace WpfApp2
                         Canvas.SetTop(designerItem, Canvas.GetTop(designerItem) + deltaVertical);
                         designerItem.Height -= deltaVertical;
                         break;
-                    default:
-                        break;
                 }
 
                 switch (HorizontalAlignment)
@@ -45,8 +41,6 @@ namespace WpfApp2
                     case HorizontalAlignment.Right:
                         deltaHorizontal = Math.Min(-e.HorizontalChange, designerItem.ActualWidth - designerItem.MinWidth);
                         designerItem.Width -= deltaHorizontal;
-                        break;
-                    default:
                         break;
                 }
             }
