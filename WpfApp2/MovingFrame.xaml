@@ -82,8 +82,8 @@
                     RenderTransformOrigin="0.5, 0.5"
                     Background="Gold"
                     x:Name="MoveFrame">
-        <!--<ContentControl.RenderTransform>
+        <ContentControl.RenderTransform>
                 <RotateTransform Angle="45"/>
-        </ContentControl.RenderTransform>-->
+        </ContentControl.RenderTransform>
     </ContentControl>
 </Canvas>
