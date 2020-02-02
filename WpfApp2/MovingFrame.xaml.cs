@@ -1,21 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfApp2
 {
-    /// <summary>
-    /// Interaction logic for MovingFrame.xaml
-    /// </summary>
     public partial class MovingFrame
     {
         public MovingFrame()
@@ -23,13 +10,13 @@ namespace WpfApp2
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty ForefroundProperty = DependencyProperty.Register(
-            "Forefround", typeof(Brush), typeof(MovingFrame), new PropertyMetadata(SystemColors.ActiveBorderBrush));
+        public static readonly DependencyProperty ForegroundProperty = DependencyProperty.Register(
+            nameof(Foreground), typeof(Brush), typeof(MovingFrame), new PropertyMetadata(default));
 
-        public Brush Forefround
+        public Brush Foreground
         {
-            get { return (Brush) GetValue(ForefroundProperty); }
-            set { SetValue(ForefroundProperty, value); }
+            get => (Brush) GetValue(ForegroundProperty);
+            set => SetValue(ForegroundProperty, value);
         }
     }
 }
