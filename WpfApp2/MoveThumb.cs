@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace WpfApp2
 {
@@ -8,18 +10,25 @@ namespace WpfApp2
     {
         public MoveThumb()
         {
-            DragDelta += MoveThumb_DragDelta;
+            DragDelta += new DragDeltaEventHandler(this.MoveThumb_DragDelta);
         }
 
         private void MoveThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            if (DataContext is Control designerItem)
-            {
-                var left = Canvas.GetLeft(designerItem);
-                var top = Canvas.GetTop(designerItem);
+            ContentControl designerItem = DataContext as ContentControl;
 
-                Canvas.SetLeft(designerItem, left + e.HorizontalChange);
-                Canvas.SetTop(designerItem, top + e.VerticalChange);
+            if (designerItem != null)
+            {
+                Point dragDelta = new Point(e.HorizontalChange, e.VerticalChange);
+
+                RotateTransform rotateTransform = designerItem.RenderTransform as RotateTransform;
+                if (rotateTransform != null)
+                {
+                    dragDelta = rotateTransform.Transform(dragDelta);
+                }
+
+                Canvas.SetLeft(designerItem, Canvas.GetLeft(designerItem) + dragDelta.X);
+                Canvas.SetTop(designerItem, Canvas.GetTop(designerItem) + dragDelta.Y);
             }
         }
     }

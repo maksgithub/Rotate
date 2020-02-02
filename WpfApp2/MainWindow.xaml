@@ -14,7 +14,6 @@
         <local:MovingFrame x:Name="MovingFrame" 
                            Width="1083"
                            Height="1010" 
-                           Left="500"
                            Top="45"
                            Background="DarkSeaGreen"
                            Foreground="Transparent"
