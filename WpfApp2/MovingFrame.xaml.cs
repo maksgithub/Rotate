@@ -18,5 +18,23 @@ namespace WpfApp2
             get => (Brush) GetValue(ForegroundProperty);
             set => SetValue(ForegroundProperty, value);
         }
+
+        public static readonly DependencyProperty FrameWidthProperty = DependencyProperty.Register(
+            nameof(FrameWidth), typeof(double), typeof(MovingFrame), new PropertyMetadata(default(double)));
+
+        public double FrameWidth
+        {
+            get { return (double) GetValue(FrameWidthProperty); }
+            set { SetValue(FrameWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty FrameHeightProperty = DependencyProperty.Register(
+            nameof(FrameHeight), typeof(double), typeof(MovingFrame), new PropertyMetadata(default(double)));
+
+        public double FrameHeight
+        {
+            get { return (double) GetValue(FrameHeightProperty); }
+            set { SetValue(FrameHeightProperty, value); }
+        }
     }
 }

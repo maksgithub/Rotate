@@ -6,5 +6,17 @@
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <local:MovingFrame Width="183" Height="110" Background="Red" Foreground="Transparent"/>
+    <StackPanel>
+        <TextBlock Text="{Binding FrameWidth, ElementName=MovingFrame}"></TextBlock>
+        <TextBlock Text="{Binding FrameHeight, ElementName=MovingFrame}"></TextBlock>
+        <local:MovingFrame Width="183" 
+                           x:Name="MovingFrame"
+                           Height="110" 
+                           Background="Red" 
+                           Foreground="Transparent"
+                           FrameWidth="400"
+                           FrameHeight="400"/>
+    </StackPanel>
+
+
 </Window>
