@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{8E947FDD-915A-4017-8764-F6A5FC7E4E3B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmiParser", "C:\Users\User1\source\repos\WmiParser\WmiParser\WmiParser.csproj", "{E6B21DF2-0D2B-4A35-87DC-38D83A7E8E6E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp2", "WpfApp2\WpfApp2.csproj", "{DC984AED-89D0-4985-A301-3DCA7E2CC658}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp3", "WpfApp3\WpfApp3.csproj", "{17558D84-0E60-4A43-A3F4-D3D816A06B7D}"
@@ -19,14 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8E947FDD-915A-4017-8764-F6A5FC7E4E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E947FDD-915A-4017-8764-F6A5FC7E4E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E947FDD-915A-4017-8764-F6A5FC7E4E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E947FDD-915A-4017-8764-F6A5FC7E4E3B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6B21DF2-0D2B-4A35-87DC-38D83A7E8E6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6B21DF2-0D2B-4A35-87DC-38D83A7E8E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6B21DF2-0D2B-4A35-87DC-38D83A7E8E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6B21DF2-0D2B-4A35-87DC-38D83A7E8E6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC984AED-89D0-4985-A301-3DCA7E2CC658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC984AED-89D0-4985-A301-3DCA7E2CC658}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC984AED-89D0-4985-A301-3DCA7E2CC658}.Release|Any CPU.ActiveCfg = Release|Any CPU
