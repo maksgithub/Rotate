@@ -42,19 +42,7 @@ namespace WpfApp2
         }
 
 
-        public static readonly DependencyProperty LeftProperty = DependencyProperty.Register(
-            "Left", typeof(double), typeof(MovingFrame), new PropertyMetadata(default(double)));
-
-        public double Left
-        {   
-            get { return (double) GetValue(LeftProperty); }
-            set { SetValue(LeftProperty, value); }
-        }
-
-        public static readonly DependencyProperty TopProperty = DependencyProperty.Register(
-            "Top", typeof(double), typeof(MovingFrame), new PropertyMetadata(default(double), PropertyChangedCallback));
-
-        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void PropertyChangedCallback2(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is MovingFrame m)
             {
@@ -72,17 +60,13 @@ namespace WpfApp2
         }
 
 
+        public static readonly DependencyProperty M11Property = DependencyProperty.Register(
+            "M11", typeof(ObservablePoint), typeof(MovingFrame), new PropertyMetadata(new ObservablePoint(0,0)));
 
-        public double Top
+        public ObservablePoint M11
         {
-            get { return (double) GetValue(TopProperty); }
-            set { SetValue(TopProperty, value); }
-        }
-
-        private void Thumb_OnDragDelta(object sender, DragDeltaEventArgs e)
-        {
-            var c = Canvas.GetTop(MoveFrame as UIElement);
-            //Trace.TraceInformation(c.ToString());
+            get => (ObservablePoint) GetValue(M11Property);
+            set => SetValue(M11Property, value);
         }
     }
 }
