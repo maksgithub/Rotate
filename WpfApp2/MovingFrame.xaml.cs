@@ -16,11 +16,20 @@ namespace WpfApp2
     /// <summary>
     /// Interaction logic for MovingFrame.xaml
     /// </summary>
-    public partial class MovingFrame : UserControl
+    public partial class MovingFrame
     {
         public MovingFrame()
         {
             InitializeComponent();
+        }
+
+        public static readonly DependencyProperty ForefroundProperty = DependencyProperty.Register(
+            "Forefround", typeof(Brush), typeof(MovingFrame), new PropertyMetadata(SystemColors.ActiveBorderBrush));
+
+        public Brush Forefround
+        {
+            get { return (Brush) GetValue(ForefroundProperty); }
+            set { SetValue(ForefroundProperty, value); }
         }
     }
 }
