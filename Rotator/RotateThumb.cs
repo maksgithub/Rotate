@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -40,16 +41,12 @@ namespace Rotator
                     var startPoint = Mouse.GetPosition(_designerCanvas);
                     _startVector = Point.Subtract(startPoint, _centerPoint);
 
-                    _rotateTransform = _designerItem.RenderTransform as RotateTransform;
-                    if (_rotateTransform == null)
-                    {
-                        _designerItem.RenderTransform = new RotateTransform(0);
-                        _initialAngle = 0;
-                    }
-                    else
-                    {
-                        _initialAngle = _rotateTransform.Angle;
-                    }
+                    var rotateTransforms = ((TransformGroup)_designerItem.RenderTransform)
+                        .Children.OfType<RotateTransform>().ToArray();
+
+                    var angle = rotateTransforms.Sum(x => x.Angle);
+                    _rotateTransform = rotateTransforms.First();
+                    _initialAngle = _rotateTransform.Angle;
                 }
             }
         }
@@ -63,11 +60,7 @@ namespace Rotator
 
                 var angle = Vector.AngleBetween(_startVector, deltaVector);
 
-                if(_designerItem.RenderTransform is RotateTransform rotateTransform)
-                {
-                    rotateTransform.Angle = _initialAngle + Math.Round(angle, 0);
-                }
-
+                _rotateTransform.Angle = _initialAngle + Math.Round(angle, 0);
                 _designerItem.InvalidateMeasure();
             }
         }

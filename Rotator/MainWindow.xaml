@@ -10,7 +10,7 @@
         <local:MovingFrame FrameWidth="200"
                            FrameHeight="200" 
                            X="200"
-                           Angle="70"
+                           Angle="90"
                            Height="200"/>
     </Grid>
 </Window>
