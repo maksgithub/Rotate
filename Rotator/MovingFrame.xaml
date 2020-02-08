@@ -126,6 +126,7 @@
         <ContentControl.RenderTransform>
             <TransformGroup>
                 <RotateTransform Angle="{Binding Angle, RelativeSource={RelativeSource AncestorType={x:Type rotator:MovingFrame}}, Mode=TwoWay}" />
+                <RotateTransform Angle="20"></RotateTransform>
                 <TranslateTransform X="50" Y="100"/>
             </TransformGroup>
         </ContentControl.RenderTransform>

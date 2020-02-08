@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -26,14 +27,11 @@ namespace Rotator
             {
                 _transformOrigin = _designerItem.RenderTransformOrigin;
 
-                if (_designerItem.RenderTransform is RotateTransform rotateTransform)
-                {
-                    _angle = rotateTransform.Angle * Math.PI / 180.0;
-                }
-                else
-                {
-                    _angle = 0;
-                }
+                var angle = (_designerItem.RenderTransform as TransformGroup)?
+                    .Children.OfType<RotateTransform>()
+                    .Sum(x => x.Angle) ?? 0;
+
+                _angle = angle * Math.PI / 180.0;
             }
         }
 
