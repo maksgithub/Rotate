@@ -44,10 +44,10 @@ namespace Rotator
                 switch (VerticalAlignment)
                 {
                     case VerticalAlignment.Bottom:
-                        ResizeBottom(e);
+                        ResizeBottom(-e.VerticalChange);
                         break;
                     case VerticalAlignment.Top:
-                        ResizeTop(e);
+                        ResizeTop(e.VerticalChange);
                         break;
                 }
 
@@ -57,7 +57,7 @@ namespace Rotator
                         ResizeLeft(e.HorizontalChange);
                         break;
                     case HorizontalAlignment.Right:
-                        ResizeRight(e);
+                        ResizeRight(-e.HorizontalChange);
                         break;
                 }
             }
@@ -65,51 +65,43 @@ namespace Rotator
             e.Handled = true;
         }
 
-        private void ResizeRight(DragDeltaEventArgs e)
+        private void ResizeRight(double horizontalChange)
         {
-            double deltaHorizontal;
-            deltaHorizontal = Math.Min(-e.HorizontalChange, _designerItem.ActualWidth - _designerItem.MinWidth);
-            Canvas.SetTop(_designerItem,
-                Canvas.GetTop(_designerItem) - _transformOrigin.X * deltaHorizontal * Math.Sin(_angle));
-            Canvas.SetLeft(_designerItem,
-                Canvas.GetLeft(_designerItem) + (deltaHorizontal * _transformOrigin.X * (1 - Math.Cos(_angle))));
+            var deltaHorizontal = Math.Min(horizontalChange, _designerItem.ActualWidth - _designerItem.MinWidth);
+            var top = Canvas.GetTop(_designerItem) - _transformOrigin.X * deltaHorizontal * Math.Sin(_angle);
+            var left = Canvas.GetLeft(_designerItem) + (deltaHorizontal * _transformOrigin.X * (1 - Math.Cos(_angle)));
+            Canvas.SetTop(_designerItem, top);
+            Canvas.SetLeft(_designerItem, left);
             _designerItem.Width -= deltaHorizontal;
         }
 
-        private void ResizeLeft(double eHorizontalChange)
+        private void ResizeLeft(double horizontalChange)
         {
-            double deltaHorizontal;
-            deltaHorizontal = Math.Min(eHorizontalChange, _designerItem.ActualWidth - _designerItem.MinWidth);
-            Canvas.SetTop(_designerItem,
-                Canvas.GetTop(_designerItem) + deltaHorizontal * Math.Sin(_angle) -
-                _transformOrigin.X * deltaHorizontal * Math.Sin(_angle));
-            Canvas.SetLeft(_designerItem,
-                Canvas.GetLeft(_designerItem) + deltaHorizontal * Math.Cos(_angle) +
-                (_transformOrigin.X * deltaHorizontal * (1 - Math.Cos(_angle))));
+            var deltaHorizontal = Math.Min(horizontalChange, _designerItem.ActualWidth - _designerItem.MinWidth);
+            var top = Canvas.GetTop(_designerItem) + deltaHorizontal * Math.Sin(_angle) - _transformOrigin.X * deltaHorizontal * Math.Sin(_angle);
+            var left = Canvas.GetLeft(_designerItem) + deltaHorizontal * Math.Cos(_angle) + (_transformOrigin.X * deltaHorizontal * (1 - Math.Cos(_angle)));
+            Canvas.SetTop(_designerItem, top);
+            Canvas.SetLeft(_designerItem, left);
             _designerItem.Width -= deltaHorizontal;
         }
 
-        private void ResizeTop(DragDeltaEventArgs e)
+        private void ResizeTop(double verticalChange)
         {
-            double deltaVertical;
-            deltaVertical = Math.Min(e.VerticalChange, _designerItem.ActualHeight - _designerItem.MinHeight);
-            Canvas.SetTop(_designerItem,
-                Canvas.GetTop(_designerItem) + deltaVertical * Math.Cos(-_angle) +
-                (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle))));
-            Canvas.SetLeft(_designerItem,
-                Canvas.GetLeft(_designerItem) + deltaVertical * Math.Sin(-_angle) -
-                (_transformOrigin.Y * deltaVertical * Math.Sin(-_angle)));
+            var deltaVertical = Math.Min(verticalChange, _designerItem.ActualHeight - _designerItem.MinHeight);
+            var top = Canvas.GetTop(_designerItem) + deltaVertical * Math.Cos(-_angle) + (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle)));
+            var left = Canvas.GetLeft(_designerItem) + deltaVertical * Math.Sin(-_angle) - (_transformOrigin.Y * deltaVertical * Math.Sin(-_angle));
+            Canvas.SetTop(_designerItem, top);
+            Canvas.SetLeft(_designerItem, left);
             _designerItem.Height -= deltaVertical;
         }
 
-        private void ResizeBottom(DragDeltaEventArgs e)
+        private void ResizeBottom(double verticalChange)
         {
-            double deltaVertical;
-            deltaVertical = Math.Min(-e.VerticalChange, _designerItem.ActualHeight - _designerItem.MinHeight);
-            Canvas.SetTop(_designerItem,
-                Canvas.GetTop(_designerItem) + (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle))));
-            Canvas.SetLeft(_designerItem,
-                Canvas.GetLeft(_designerItem) - deltaVertical * _transformOrigin.Y * Math.Sin(-_angle));
+            var deltaVertical = Math.Min(verticalChange, _designerItem.ActualHeight - _designerItem.MinHeight);
+            var top = Canvas.GetTop(_designerItem) + (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle)));
+            var left = Canvas.GetLeft(_designerItem) - deltaVertical * _transformOrigin.Y * Math.Sin(-_angle);
+            Canvas.SetTop(_designerItem, top);
+            Canvas.SetLeft(_designerItem, left);
             _designerItem.Height -= deltaVertical;
         }
     }
