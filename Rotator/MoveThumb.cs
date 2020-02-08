@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -20,10 +21,9 @@ namespace Rotator
             {
                 var dragDelta = new Point(e.HorizontalChange, e.VerticalChange);
 
-                if (designerItem.RenderTransform is RotateTransform rotateTransform)
-                {
-                    dragDelta = rotateTransform.Transform(dragDelta);
-                }
+
+                var transformGroup = designerItem.GetTransforms<TransformGroup>().FirstOrDefault();
+                transformGroup?.Transform(dragDelta);
 
                 var x = Canvas.GetLeft(designerItem) + dragDelta.X;
                 var y = Canvas.GetTop(designerItem) + dragDelta.Y;

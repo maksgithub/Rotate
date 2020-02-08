@@ -26,11 +26,7 @@ namespace Rotator
             if (_designerItem != null)
             {
                 _transformOrigin = _designerItem.RenderTransformOrigin;
-
-                var angle = (_designerItem.RenderTransform as TransformGroup)?
-                    .Children.OfType<RotateTransform>()
-                    .Sum(x => x.Angle) ?? 0;
-
+                var angle = _designerItem.GetTransforms<RotateTransform>().Sum(x => x.Angle);
                 _angle = angle * Math.PI / 180.0;
             }
         }
