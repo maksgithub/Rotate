@@ -38,38 +38,12 @@ namespace Rotator
                 var scaleX = scaleTransform.ScaleX;
                 var scaleY = scaleTransform.ScaleY;
 
-                var ha = scaleX == -1 ? Invert(HorizontalAlignment) : HorizontalAlignment;
-                var va = scaleY == -1 ? Invert(VerticalAlignment) : VerticalAlignment;
+                var ha = scaleX == -1 ? HorizontalAlignment.Invert() : HorizontalAlignment;
+                var va = scaleY == -1 ? VerticalAlignment.Invert() : VerticalAlignment;
                 Resize(e, va, ha);
             }
 
             e.Handled = true;
-        }
-
-        private static HorizontalAlignment Invert(HorizontalAlignment alignment)
-        {
-            switch (alignment)
-            {
-                case HorizontalAlignment.Left:
-                    return HorizontalAlignment.Right;
-                case HorizontalAlignment.Right:
-                    return HorizontalAlignment.Left;
-                default:
-                    return alignment;
-            }
-        }
-
-        private static VerticalAlignment Invert(VerticalAlignment alignment)
-        {
-            switch (alignment)
-            {
-                case VerticalAlignment.Top:
-                    return VerticalAlignment.Bottom;
-                case VerticalAlignment.Bottom:
-                    return VerticalAlignment.Top;
-                default:
-                    return alignment;
-            }
         }
 
         private void Resize(DragDeltaEventArgs e,
