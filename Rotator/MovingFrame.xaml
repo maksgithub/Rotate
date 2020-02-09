@@ -129,9 +129,9 @@
                 <TransformGroup r:TransformProperties.GroupName="{x:Static r:TransformProperties.RotateGroup}">
                     <RotateTransform Angle="{Binding Angle, ElementName=Root, Mode=TwoWay}" 
                                      r:TransformProperties.GroupName="{x:Static r:TransformProperties.MainRotateTransform}" />
-                    <RotateTransform Angle="180" />
+                    <RotateTransform Angle="10" />
                 </TransformGroup>
-                <TranslateTransform X="50" Y="100" />
+                <!--<TranslateTransform X="50" Y="100" />-->
             </TransformGroup>
 
         </ContentControl.RenderTransform>
