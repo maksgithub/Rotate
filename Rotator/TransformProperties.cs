@@ -3,12 +3,13 @@ using System.Windows.Media;
 
 namespace Rotator
 {
-    public class TransformProperties
+    internal class TransformProperties
     {
         public const string MainGroup = nameof(MainGroup);
         public const string RotateGroup = nameof(RotateGroup);
-        public const string MainRotateGroup = nameof(MainRotateGroup);
         public const string TranslateGroup = nameof(TranslateGroup);
+
+        public const string MainRotateTransform = nameof(MainRotateTransform);
 
 
         public static readonly DependencyProperty GroupNameProperty = DependencyProperty.RegisterAttached(

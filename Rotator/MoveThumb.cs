@@ -23,9 +23,9 @@ namespace Rotator
 
 
                 var transformGroup = designerItem.RenderTransform
-                    .GetTransform<TransformGroup>(TransformProperties.MainGroup);
+                    .GetTransform<TransformGroup>(TransformProperties.RotateGroup);
 
-                transformGroup?.Transform(dragDelta);
+                dragDelta = transformGroup?.Transform(dragDelta) ?? dragDelta;
 
                 var x = Canvas.GetLeft(designerItem) + dragDelta.X;
                 var y = Canvas.GetTop(designerItem) + dragDelta.Y;
