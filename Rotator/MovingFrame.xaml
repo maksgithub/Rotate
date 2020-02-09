@@ -131,7 +131,7 @@
                                      r:TransformProperties.GroupName="{x:Static r:TransformProperties.MainRotateTransform}" />
                     <RotateTransform Angle="10" />
                 </TransformGroup>
-                <!--<TranslateTransform X="50" Y="100" />-->
+                <TranslateTransform X="50" Y="100" />
             </TransformGroup>
 
         </ContentControl.RenderTransform>

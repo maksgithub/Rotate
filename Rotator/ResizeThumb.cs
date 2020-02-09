@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Rotator
@@ -36,35 +34,12 @@ namespace Rotator
         {
             if (_designerItem != null)
             {
-                var scaleTransform = _designerItem.GetTransform<ScaleTransform>(null);
+                var scaleTransform = _designerItem.GetTransform<ScaleTransform>();
                 var scaleX = scaleTransform.ScaleX;
                 var scaleY = scaleTransform.ScaleY;
 
-                HorizontalAlignment ha;
-                if (scaleX == -1)
-                {
-                    ha = Invert(HorizontalAlignment);
-                    _angle = GetCurrentAngle();
-
-                }
-                else
-                {
-                    ha = HorizontalAlignment;
-                    _angle = GetCurrentAngle();
-                }
-
-                VerticalAlignment va;
-                if (scaleY == -1)
-                {
-                    va = Invert(VerticalAlignment);
-                    _angle = GetCurrentAngle();
-                }
-                else
-                {
-                    va = VerticalAlignment;
-                    _angle = GetCurrentAngle();
-                }
-
+                var ha = scaleX == -1 ? Invert(HorizontalAlignment) : HorizontalAlignment;
+                var va = scaleY == -1 ? Invert(VerticalAlignment) : VerticalAlignment;
                 Resize(e, va, ha);
             }
 
@@ -101,7 +76,7 @@ namespace Rotator
             VerticalAlignment verticalAlignment,
             HorizontalAlignment horizontalAlignment)
         {
-            var scaleTransform = _designerItem.GetTransform<ScaleTransform>(null);
+            var scaleTransform = _designerItem.GetTransform<ScaleTransform>();
             var scaleX = scaleTransform.ScaleX;
             var scaleY = scaleTransform.ScaleY;
 
@@ -189,13 +164,13 @@ namespace Rotator
 
         private void FlipY()
         {
-            var scaleTransform = _designerItem.GetTransform<ScaleTransform>(null);
+            var scaleTransform = _designerItem.GetTransform<ScaleTransform>();
             scaleTransform.ScaleY *= -1;
         }
 
         private void FlipX()
         {
-            var scaleTransform = _designerItem.GetTransform<ScaleTransform>(null);
+            var scaleTransform = _designerItem.GetTransform<ScaleTransform>();
             scaleTransform.ScaleX *= -1;
         }
 
