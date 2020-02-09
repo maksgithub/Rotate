@@ -13,7 +13,6 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ContentControl}">
                         <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
-
                             <r:RotateThumb HorizontalAlignment="Stretch"
                                                  VerticalAlignment="Stretch"
                                                  Margin="-150"
@@ -26,7 +25,8 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type r:MoveThumb}">
-                                                    <Rectangle Fill="{TemplateBinding Foreground}" />
+                                                    <Image Source="20190824_201914.jpg" />
+                                                    <!--<Rectangle Fill="{TemplateBinding Foreground}" />-->
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
