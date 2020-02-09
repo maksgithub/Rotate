@@ -34,28 +34,64 @@ namespace Rotator
         {
             if (_designerItem != null)
             {
-                switch (VerticalAlignment)
-                {
-                    case VerticalAlignment.Bottom:
-                        ResizeBottom(-e.VerticalChange);
-                        break;
-                    case VerticalAlignment.Top:
-                        ResizeTop(e.VerticalChange);
-                        break;
-                }
-
-                switch (HorizontalAlignment)
-                {
-                    case HorizontalAlignment.Left:
-                        ResizeLeft(e.HorizontalChange);
-                        break;
-                    case HorizontalAlignment.Right:
-                        ResizeRight(-e.HorizontalChange);
-                        break;
-                }
+                Resize(e, Invert(VerticalAlignment), Invert(HorizontalAlignment));
             }
 
             e.Handled = true;
+        }
+
+        private static HorizontalAlignment Invert(HorizontalAlignment alignment)
+        {
+            switch (alignment)
+            {
+                case HorizontalAlignment.Left:
+                    return HorizontalAlignment.Right;
+                case HorizontalAlignment.Right:
+                    return HorizontalAlignment.Left;
+                default:
+                    return alignment;
+            }
+        }
+
+        private static VerticalAlignment Invert(VerticalAlignment alignment)
+        {
+            switch (alignment)
+            {
+                case VerticalAlignment.Top:
+                    return VerticalAlignment.Bottom;
+                case VerticalAlignment.Bottom:
+                    return VerticalAlignment.Top;
+                default:
+                    return alignment;
+            }
+        }
+
+        private void Resize(DragDeltaEventArgs e,
+            VerticalAlignment verticalAlignment,
+            HorizontalAlignment horizontalAlignment)
+        {
+            var scaleTransform = _designerItem.GetTransform<ScaleTransform>(null);
+            var scaleX = scaleTransform.ScaleX;
+            var scaleY = scaleTransform.ScaleY;
+            switch (verticalAlignment)
+            {
+                case VerticalAlignment.Bottom:
+                    ResizeBottom(-e.VerticalChange * scaleX);
+                    break;
+                case VerticalAlignment.Top:
+                    ResizeTop(e.VerticalChange * scaleX);
+                    break;
+            }
+
+            switch (horizontalAlignment)
+            {
+                case HorizontalAlignment.Left:
+                    ResizeLeft(e.HorizontalChange * scaleY);
+                    break;
+                case HorizontalAlignment.Right:
+                    ResizeRight(-e.HorizontalChange * scaleY);
+                    break;
+            }
         }
 
         private void ResizeRight(double horizontalChange)

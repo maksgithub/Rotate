@@ -130,9 +130,8 @@
                                      r:TransformProperties.GroupName="{x:Static r:TransformProperties.MainRotateTransform}" />
                     <RotateTransform Angle="-90" />
                 </TransformGroup>
+                <ScaleTransform ScaleX="-1" ScaleY="-1" />
                 <TranslateTransform X="50" Y="100" />
-                <ScaleTransform ScaleX="1" ScaleY="1" 
-                                r:TransformProperties.GroupName="{x:Static r:TransformProperties.ScaleTransform}" />
             </TransformGroup>
 
         </ContentControl.RenderTransform>
