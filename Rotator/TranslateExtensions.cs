@@ -7,37 +7,30 @@ namespace Rotator
 {
     public static class TranslateExtensions
     {
-        public static List<T> GetTransforms<T>(this UIElement source) where T : Transform
+        public static T GetTransform<T>(this Transform transform, string name) where T : Transform
         {
-            var renderTransform = source?.RenderTransform;
-            if (renderTransform != null)
+            if (transform != null)
             {
-                if (renderTransform is T t)
-                    return new List<T>() { t };
+                if (transform is T result && result.GetName() == name)
+                    return result;
 
-                if (renderTransform is TransformGroup group)
+                if (transform is TransformGroup group)
                 {
-                    return group.Children.Select(GetTransforms<T>).Where(x=> x!=null).ToList();
+                    foreach (var child in group.Children)
+                    {
+                        var r = child.GetTransform<T>(name);
+                        if (r != null)
+                            return r;
+                    }
                 }
             }
 
             return null;
         }
 
-        public static T GetTransforms<T>(this Transform source) where T : Transform
+        public static string GetName(this Transform transform)
         {
-            if (source is T t)
-                return t;
-
-            if (source is TransformGroup group)
-            {
-                foreach (var child in group.Children)
-                {
-                    return GetTransforms<T>(child);
-                }
-            }
-
-            return null;
+            return transform?.GetValue(TransformProperties.GroupNameProperty) as string;
         }
     }
 }

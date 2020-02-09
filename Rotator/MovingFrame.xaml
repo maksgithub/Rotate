@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:rotator="clr-namespace:Rotator"
+        xmlns:r="clr-namespace:Rotator"
         mc:Ignorable="d"
         d:DesignHeight="450" d:DesignWidth="800"
         x:Name="Root">
@@ -14,25 +14,25 @@
                     <ControlTemplate TargetType="{x:Type ContentControl}">
                         <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
 
-                            <rotator:RotateThumb HorizontalAlignment="Stretch"
-                                                  VerticalAlignment="Stretch"
-                                                  Margin="-150" 
-                                                  Opacity="0"
-                                                  DragCompleted="Thumb_OnDragCompleted">
-                            </rotator:RotateThumb>
-                            <rotator:MoveThumb Cursor="SizeAll" Foreground="Transparent" DragCompleted="Thumb_OnDragCompleted">
-                                <rotator:MoveThumb.Style>
-                                    <Style TargetType="{x:Type rotator:MoveThumb}">
+                            <r:RotateThumb HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 Margin="-150"
+                                                 Opacity="0"
+                                                 DragCompleted="Thumb_OnDragCompleted" />
+                            <r:MoveThumb Cursor="SizeAll" Foreground="Transparent"
+                                               DragCompleted="Thumb_OnDragCompleted">
+                                <r:MoveThumb.Style>
+                                    <Style TargetType="{x:Type r:MoveThumb}">
                                         <Setter Property="Template">
                                             <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type rotator:MoveThumb}">
+                                                <ControlTemplate TargetType="{x:Type r:MoveThumb}">
                                                     <Rectangle Fill="{TemplateBinding Foreground}" />
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
                                     </Style>
-                                </rotator:MoveThumb.Style>
-                            </rotator:MoveThumb>
+                                </r:MoveThumb.Style>
+                            </r:MoveThumb>
                             <Control x:Name="resizer" Foreground="{TemplateBinding Foreground}">
                                 <Control.Style>
                                     <Style TargetType="{x:Type Control}">
@@ -41,42 +41,42 @@
                                                 <ControlTemplate TargetType="{x:Type Control}">
                                                     <Grid>
                                                         <Grid Opacity="0" Margin="-3">
-                                                            <rotator:ResizeThumb Height="3" Cursor="SizeNS"
-                                                                                  VerticalAlignment="Top"
-                                                                                  HorizontalAlignment="Stretch" 
-                                                                                  DragCompleted="Thumb_OnDragCompleted" />
-                                                            <rotator:ResizeThumb Width="3" Cursor="SizeWE"
-                                                                                  VerticalAlignment="Stretch"
-                                                                                  HorizontalAlignment="Left" 
-                                                                                  DragCompleted="Thumb_OnDragCompleted"/>
-                                                            <rotator:ResizeThumb Width="3" Cursor="SizeWE"
-                                                                                  VerticalAlignment="Stretch"
-                                                                                  HorizontalAlignment="Right" 
-                                                                                  DragCompleted="Thumb_OnDragCompleted"/>
-                                                            <rotator:ResizeThumb Height="3" Cursor="SizeNS"
-                                                                                  VerticalAlignment="Bottom"
-                                                                                  HorizontalAlignment="Stretch" 
-                                                                                  DragCompleted="Thumb_OnDragCompleted"/>
-                                                            <rotator:ResizeThumb Width="7" Height="7" Margin="-2"
-                                                                                  Cursor="SizeNWSE"
-                                                                                  VerticalAlignment="Top"
-                                                                                  HorizontalAlignment="Left" 
-                                                                                  DragCompleted="Thumb_OnDragCompleted"/>
-                                                            <rotator:ResizeThumb Width="7" Height="7" Margin="-2"
-                                                                                  Cursor="SizeNESW"
-                                                                                  VerticalAlignment="Top"
-                                                                                  HorizontalAlignment="Right" 
-                                                                                  DragCompleted="Thumb_OnDragCompleted"/>
-                                                            <rotator:ResizeThumb Width="7" Height="7" Margin="-2"
-                                                                                  Cursor="SizeNESW"
-                                                                                  VerticalAlignment="Bottom"
-                                                                                  HorizontalAlignment="Left" 
-                                                                                  DragCompleted="Thumb_OnDragCompleted"/>
-                                                            <rotator:ResizeThumb Width="7" Height="7" Margin="-2"
-                                                                                  Cursor="SizeNWSE"
-                                                                                  VerticalAlignment="Bottom"
-                                                                                  HorizontalAlignment="Right" 
-                                                                                  DragCompleted="Thumb_OnDragCompleted"/>
+                                                            <r:ResizeThumb Height="3" Cursor="SizeNS"
+                                                                                 VerticalAlignment="Top"
+                                                                                 HorizontalAlignment="Stretch"
+                                                                                 DragCompleted="Thumb_OnDragCompleted" />
+                                                            <r:ResizeThumb Width="3" Cursor="SizeWE"
+                                                                                 VerticalAlignment="Stretch"
+                                                                                 HorizontalAlignment="Left"
+                                                                                 DragCompleted="Thumb_OnDragCompleted" />
+                                                            <r:ResizeThumb Width="3" Cursor="SizeWE"
+                                                                                 VerticalAlignment="Stretch"
+                                                                                 HorizontalAlignment="Right"
+                                                                                 DragCompleted="Thumb_OnDragCompleted" />
+                                                            <r:ResizeThumb Height="3" Cursor="SizeNS"
+                                                                                 VerticalAlignment="Bottom"
+                                                                                 HorizontalAlignment="Stretch"
+                                                                                 DragCompleted="Thumb_OnDragCompleted" />
+                                                            <r:ResizeThumb Width="7" Height="7" Margin="-2"
+                                                                                 Cursor="SizeNWSE"
+                                                                                 VerticalAlignment="Top"
+                                                                                 HorizontalAlignment="Left"
+                                                                                 DragCompleted="Thumb_OnDragCompleted" />
+                                                            <r:ResizeThumb Width="7" Height="7" Margin="-2"
+                                                                                 Cursor="SizeNESW"
+                                                                                 VerticalAlignment="Top"
+                                                                                 HorizontalAlignment="Right"
+                                                                                 DragCompleted="Thumb_OnDragCompleted" />
+                                                            <r:ResizeThumb Width="7" Height="7" Margin="-2"
+                                                                                 Cursor="SizeNESW"
+                                                                                 VerticalAlignment="Bottom"
+                                                                                 HorizontalAlignment="Left"
+                                                                                 DragCompleted="Thumb_OnDragCompleted" />
+                                                            <r:ResizeThumb Width="7" Height="7" Margin="-2"
+                                                                                 Cursor="SizeNWSE"
+                                                                                 VerticalAlignment="Bottom"
+                                                                                 HorizontalAlignment="Right"
+                                                                                 DragCompleted="Thumb_OnDragCompleted" />
                                                         </Grid>
                                                         <Grid IsHitTestVisible="False" Opacity="1" Margin="-3">
                                                             <Grid.Resources>
@@ -116,19 +116,24 @@
     </Canvas.Resources>
 
     <ContentControl
-        Width="{Binding FrameWidth, RelativeSource={RelativeSource AncestorType={x:Type rotator:MovingFrame}}, Mode=TwoWay}"
-        Height="{Binding FrameHeight, RelativeSource={RelativeSource AncestorType={x:Type rotator:MovingFrame}}, Mode=TwoWay}"
-        Canvas.Left="{Binding X, RelativeSource={RelativeSource AncestorType={x:Type rotator:MovingFrame}}, Mode=TwoWay}"
-        Canvas.Top="{Binding Y, RelativeSource={RelativeSource AncestorType={x:Type rotator:MovingFrame}}, Mode=TwoWay}"
-        Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type rotator:MovingFrame}}}"
+        Width="{Binding FrameWidth, RelativeSource={RelativeSource AncestorType={x:Type r:MovingFrame}}, Mode=TwoWay}"
+        Height="{Binding FrameHeight, RelativeSource={RelativeSource AncestorType={x:Type r:MovingFrame}}, Mode=TwoWay}"
+        Canvas.Left="{Binding X, RelativeSource={RelativeSource AncestorType={x:Type r:MovingFrame}}, Mode=TwoWay}"
+        Canvas.Top="{Binding Y, RelativeSource={RelativeSource AncestorType={x:Type r:MovingFrame}}, Mode=TwoWay}"
+        Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type r:MovingFrame}}}"
         RenderTransformOrigin="0.5, 0.5"
         x:Name="MoveFrame">
         <ContentControl.RenderTransform>
-            <TransformGroup>
-                <RotateTransform Angle="{Binding Angle, RelativeSource={RelativeSource AncestorType={x:Type rotator:MovingFrame}}, Mode=TwoWay}" />
-                <RotateTransform Angle="20"></RotateTransform>
-                <TranslateTransform X="50" Y="100"/>
+            <TransformGroup  r:TransformProperties.GroupName="{x:Static r:TransformProperties.MainGroup}">
+                <!--<TransformGroup r:TransformProperties.GroupName="{x:Static r:TransformProperties.RotateGroup}">-->
+                    <RotateTransform Angle="{Binding Angle, ElementName=Root, Mode=TwoWay}" />
+                    <RotateTransform Angle="20" />
+                <!--</TransformGroup>-->    
+                <!--<TransformGroup  r:TransformProperties.GroupName="{x:Static r:TransformProperties.TranslateGroup}">
+                    --><!--<TranslateTransform X="50" Y="100" />--><!--
+                </TransformGroup>-->
             </TransformGroup>
+
         </ContentControl.RenderTransform>
     </ContentControl>
 </Canvas>

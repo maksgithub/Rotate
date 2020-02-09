@@ -41,9 +41,9 @@ namespace Rotator
                     var startPoint = Mouse.GetPosition(_designerCanvas);
                     _startVector = Point.Subtract(startPoint, _centerPoint);
 
-                    var rotateTransforms = _designerItem.GetTransforms<RotateTransform>();
-                    var angle = rotateTransforms.Sum(x => x.Angle);
-                    _rotateTransform = rotateTransforms.First();
+                 //   var rotateTransforms = _designerItem.GetTransforms<RotateTransform>();
+                    //var angle = rotateTransforms.Sum(x => x.Angle);
+                   // _rotateTransform = rotateTransforms.First();
                     _initialAngle = _rotateTransform.Angle;
                 }
             }
