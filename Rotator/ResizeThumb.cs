@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Rotator
@@ -32,9 +34,28 @@ namespace Rotator
 
         private void ResizeThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
+            HorizontalAlignment ha;
             if (_designerItem != null)
             {
-                Resize(e, Invert(VerticalAlignment), Invert(HorizontalAlignment));
+                var scaleTransform = _designerItem.GetTransform<ScaleTransform>(null);
+                var scaleX = scaleTransform.ScaleX;
+                var scaleY = scaleTransform.ScaleY;
+
+                var p = Mouse.GetPosition(_designerItem);
+                var x = p.X * scaleX;
+                var y = p.Y * scaleY;
+
+                //Trace.TraceInformation($"{x}:{y}");
+                if (x < -5 && scaleTransform.ScaleX > 0)
+                {
+                    //scaleTransform.ScaleX *= -1;
+                    // Trace.TraceInformation($"Enter");
+                }
+
+
+                ha = scaleTransform.ScaleX == -1 ? Invert(HorizontalAlignment) : HorizontalAlignment;
+                var va = scaleTransform.ScaleY == -1 ? Invert(VerticalAlignment) : VerticalAlignment;
+                Resize(e, va, ha);
             }
 
             e.Handled = true;
@@ -73,23 +94,24 @@ namespace Rotator
             var scaleTransform = _designerItem.GetTransform<ScaleTransform>(null);
             var scaleX = scaleTransform.ScaleX;
             var scaleY = scaleTransform.ScaleY;
+
             switch (verticalAlignment)
             {
                 case VerticalAlignment.Bottom:
-                    ResizeBottom(-e.VerticalChange * scaleX);
+                    ResizeBottom(-e.VerticalChange * scaleY);
                     break;
                 case VerticalAlignment.Top:
-                    ResizeTop(e.VerticalChange * scaleX);
+                    ResizeTop(e.VerticalChange * scaleY);
                     break;
             }
 
             switch (horizontalAlignment)
             {
                 case HorizontalAlignment.Left:
-                    ResizeLeft(e.HorizontalChange * scaleY);
+                    ResizeLeft(e.HorizontalChange * scaleX);
                     break;
                 case HorizontalAlignment.Right:
-                    ResizeRight(-e.HorizontalChange * scaleY);
+                    ResizeRight(-e.HorizontalChange * scaleX);
                     break;
             }
         }
