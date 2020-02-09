@@ -32,6 +32,10 @@ namespace Rotator
             return null;
         }
 
+        public static IEnumerable<T> GetChildren<T>(this TransformGroup transformGroup) where T : Transform
+        {
+            return transformGroup.Children.OfType<T>();
+        }
         public static string GetName(this Transform transform)
         {
             return transform?.GetValue(TransformProperties.GroupNameProperty) as string;

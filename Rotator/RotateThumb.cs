@@ -22,16 +22,11 @@ namespace Rotator
         {
             DragDelta += RotateThumb_DragDelta;
             DragStarted += RotateThumb_DragStarted;
-            DataContextChanged += OnDataContextChanged;
         }
 
-        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            _designerItem = DataContext as ContentControl;
-            _rotateTransform = _designerItem.GetTransform<RotateTransform>(MainRotateTransform);
-        }
         private void RotateThumb_DragStarted(object sender, DragStartedEventArgs e)
         {
+            _designerItem = DataContext as ContentControl;
 
             if (_designerItem != null)
             {
@@ -47,12 +42,15 @@ namespace Rotator
                     var startPoint = Mouse.GetPosition(_designerCanvas);
                     _startVector = Point.Subtract(startPoint, _centerPoint);
 
-                    var rotateTransforms = _designerItem
-                        .GetTransform<TransformGroup>(RotateGroup)
-                        .Children.OfType<RotateTransform>().ToArray();
-
-                    var angle = rotateTransforms.Sum(x => x.Angle);
-                    _initialAngle = _rotateTransform.Angle;
+                    _rotateTransform = _designerItem.GetTransform<RotateTransform>(MainRotateTransform);
+                    if (_rotateTransform == null)
+                    {
+                        _initialAngle = 0;
+                    }
+                    else
+                    {
+                        _initialAngle = _rotateTransform.Angle;
+                    }
                 }
             }
         }
@@ -64,7 +62,6 @@ namespace Rotator
                 var currentPoint = Mouse.GetPosition(_designerCanvas);
                 var deltaVector = Point.Subtract(currentPoint, _centerPoint);
                 var angle = Vector.AngleBetween(_startVector, deltaVector);
-
                 _rotateTransform.Angle = _initialAngle + Math.Round(angle, 0);
                 _designerItem.InvalidateMeasure();
             }
