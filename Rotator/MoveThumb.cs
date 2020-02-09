@@ -21,10 +21,7 @@ namespace Rotator
             {
                 var dragDelta = new Point(e.HorizontalChange, e.VerticalChange);
 
-
-                var transformGroup = designerItem.RenderTransform
-                    .GetTransform<TransformGroup>(TransformProperties.RotateGroup);
-
+                var transformGroup = designerItem.GetTransform<TransformGroup>(TransformProperties.RotateGroup);
                 dragDelta = transformGroup?.Transform(dragDelta) ?? dragDelta;
 
                 var x = Canvas.GetLeft(designerItem) + dragDelta.X;

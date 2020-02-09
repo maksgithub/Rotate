@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using static Rotator.TransformProperties;
 
 namespace Rotator
 {
@@ -21,11 +22,16 @@ namespace Rotator
         {
             DragDelta += RotateThumb_DragDelta;
             DragStarted += RotateThumb_DragStarted;
+            DataContextChanged += OnDataContextChanged;
         }
 
-        private void RotateThumb_DragStarted(object sender, DragStartedEventArgs e)
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             _designerItem = DataContext as ContentControl;
+            _rotateTransform = _designerItem.GetTransform<RotateTransform>(MainRotateTransform);
+        }
+        private void RotateThumb_DragStarted(object sender, DragStartedEventArgs e)
+        {
 
             if (_designerItem != null)
             {
@@ -41,9 +47,11 @@ namespace Rotator
                     var startPoint = Mouse.GetPosition(_designerCanvas);
                     _startVector = Point.Subtract(startPoint, _centerPoint);
 
-                 //   var rotateTransforms = _designerItem.GetTransforms<RotateTransform>();
-                    //var angle = rotateTransforms.Sum(x => x.Angle);
-                   // _rotateTransform = rotateTransforms.First();
+                    var rotateTransforms = _designerItem
+                        .GetTransform<TransformGroup>(RotateGroup)
+                        .Children.OfType<RotateTransform>().ToArray();
+
+                    var angle = rotateTransforms.Sum(x => x.Angle);
                     _initialAngle = _rotateTransform.Angle;
                 }
             }
@@ -55,7 +63,6 @@ namespace Rotator
             {
                 var currentPoint = Mouse.GetPosition(_designerCanvas);
                 var deltaVector = Point.Subtract(currentPoint, _centerPoint);
-
                 var angle = Vector.AngleBetween(_startVector, deltaVector);
 
                 _rotateTransform.Angle = _initialAngle + Math.Round(angle, 0);

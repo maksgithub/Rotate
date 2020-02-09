@@ -7,6 +7,10 @@ namespace Rotator
 {
     public static class TranslateExtensions
     {
+        public static T GetTransform<T>(this UIElement uiElement, string name) where T : Transform
+        {
+            return uiElement?.RenderTransform.GetTransform<T>(name);
+        }
         public static T GetTransform<T>(this Transform transform, string name) where T : Transform
         {
             if (transform != null)
