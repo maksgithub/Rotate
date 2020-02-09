@@ -21,14 +21,14 @@ namespace Rotator
             {
                 var dragDelta = new Point(e.HorizontalChange, e.VerticalChange);
 
-                var transformGroup = designerItem.GetTransform<TransformGroup>(TransformProperties.RotateGroup);
-                dragDelta = transformGroup?.Transform(dragDelta) ?? dragDelta;
+                var scaleTransform = designerItem.GetTransform<ScaleTransform>();
+                dragDelta = scaleTransform.Transform(dragDelta);
 
-                var scaleTransform = designerItem.GetTransform<ScaleTransform>(null);
-                var scaleX = scaleTransform.ScaleX;
-                var scaleY = scaleTransform.ScaleY;
-                var x = Canvas.GetLeft(designerItem) + dragDelta.X * scaleX;
-                var y = Canvas.GetTop(designerItem) + dragDelta.Y * scaleY;
+                var transformGroup = designerItem.GetTransform<TransformGroup>(TransformProperties.RotateGroup);
+                dragDelta = transformGroup.Transform(dragDelta);
+
+                var x = Canvas.GetLeft(designerItem) + dragDelta.X ;
+                var y = Canvas.GetTop(designerItem) + dragDelta.Y ;
                 Canvas.SetLeft(designerItem, x);
                 Canvas.SetTop(designerItem, y);
 

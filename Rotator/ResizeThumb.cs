@@ -41,20 +41,9 @@ namespace Rotator
                 var scaleX = scaleTransform.ScaleX;
                 var scaleY = scaleTransform.ScaleY;
 
-                var p = Mouse.GetPosition(_designerItem);
-                var x = p.X * scaleX;
-                var y = p.Y * scaleY;
-
-                //Trace.TraceInformation($"{x}:{y}");
-                if (x < -5 && scaleTransform.ScaleX > 0)
-                {
-                    //scaleTransform.ScaleX *= -1;
-                    // Trace.TraceInformation($"Enter");
-                }
-
-
-                ha = scaleTransform.ScaleX == -1 ? Invert(HorizontalAlignment) : HorizontalAlignment;
-                var va = scaleTransform.ScaleY == -1 ? Invert(VerticalAlignment) : VerticalAlignment;
+                ha = scaleX == -1 ? Invert(HorizontalAlignment) : HorizontalAlignment;
+                var va = scaleY == -1 ? Invert(VerticalAlignment) : VerticalAlignment;
+                _angle = _angle * scaleX * scaleY;
                 Resize(e, va, ha);
             }
 
