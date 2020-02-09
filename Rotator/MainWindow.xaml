@@ -9,8 +9,6 @@
     <Grid Background="MediumPurple">
         <local:MovingFrame FrameWidth="200"
                            FrameHeight="200" 
-                           X="200"
-                           Angle="90"
-                           Height="200"/>
+                           Angle="90"/>
     </Grid>
 </Window>

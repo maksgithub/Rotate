@@ -128,13 +128,13 @@
                 <TransformGroup r:TransformProperties.GroupName="{x:Static r:TransformProperties.RotateGroup}">
                     <RotateTransform Angle="{Binding Angle, ElementName=Root, Mode=TwoWay}" 
                                      r:TransformProperties.GroupName="{x:Static r:TransformProperties.MainRotateTransform}" />
-                    <RotateTransform Angle="-135" />
-                </TransformGroup>    
-                <TransformGroup  r:TransformProperties.GroupName="{x:Static r:TransformProperties.TranslateGroup}">
-                    <TranslateTransform X="50" Y="100" />
+                    <RotateTransform Angle="-90" />
                 </TransformGroup>
+                <TranslateTransform X="50" Y="100" />
+                <ScaleTransform ScaleX="1" ScaleY="1" 
+                                r:TransformProperties.GroupName="{x:Static r:TransformProperties.ScaleTransform}" />
             </TransformGroup>
 
         </ContentControl.RenderTransform>
     </ContentControl>
-</Canvas>
+</Canvas>   

@@ -10,6 +10,7 @@ namespace Rotator
         public const string TranslateGroup = nameof(TranslateGroup);
 
         public const string MainRotateTransform = nameof(MainRotateTransform);
+        public const string ScaleTransform = nameof(ScaleTransform);
 
 
         public static readonly DependencyProperty GroupNameProperty = DependencyProperty.RegisterAttached(

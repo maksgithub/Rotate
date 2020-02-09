@@ -26,12 +26,7 @@ namespace Rotator
             if (_designerItem != null)
             {
                 _transformOrigin = _designerItem.RenderTransformOrigin;
-               var angle = _designerItem
-                   .GetTransform<TransformGroup>(TransformProperties.RotateGroup)
-                   .GetChildren<RotateTransform>()
-                   .Sum(x => x.Angle);
-
-                _angle = angle * Math.PI / 180.0;
+                _angle = GetCurrentAngle();
             }
         }
 
@@ -101,6 +96,16 @@ namespace Rotator
             Canvas.SetTop(_designerItem, top);
             Canvas.SetLeft(_designerItem, left);
             _designerItem.Height -= deltaVertical;
+        }
+
+        private double GetCurrentAngle()
+        {
+            var angle = _designerItem
+                .GetTransform<TransformGroup>(TransformProperties.RotateGroup)
+                .GetChildren<RotateTransform>()
+                .Sum(x => x.Angle);
+
+            return angle * Math.PI / 180.0;
         }
     }
 }
