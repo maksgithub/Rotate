@@ -124,8 +124,9 @@ namespace Rotator
             {
                 FlipX();
             }
-            var top = Canvas.GetTop(_designerItem) - _transformOrigin.X * deltaHorizontal * Math.Sin(_angle);
-            var left = Canvas.GetLeft(_designerItem) + (deltaHorizontal * _transformOrigin.X * (1 - Math.Cos(_angle)));
+            var x = _designerItem.GetTransform<ScaleTransform>(null).ScaleX;
+            var top = Canvas.GetTop(_designerItem) - _transformOrigin.X * deltaHorizontal * Math.Sin(_angle * x);
+            var left = Canvas.GetLeft(_designerItem) + (deltaHorizontal * _transformOrigin.X * (1 - Math.Cos(_angle * x)));
             Canvas.SetTop(_designerItem, top);
             Canvas.SetLeft(_designerItem, left);
             _designerItem.Width -= deltaHorizontal;
@@ -139,8 +140,9 @@ namespace Rotator
             {
                 FlipX();
             }
-            var top = Canvas.GetTop(_designerItem) + deltaHorizontal * Math.Sin(_angle) - _transformOrigin.X * deltaHorizontal * Math.Sin(_angle);
-            var left = Canvas.GetLeft(_designerItem) + deltaHorizontal * Math.Cos(_angle) + (_transformOrigin.X * deltaHorizontal * (1 - Math.Cos(_angle)));
+            var x = _designerItem.GetTransform<ScaleTransform>(null).ScaleX;
+            var top = Canvas.GetTop(_designerItem) + deltaHorizontal * Math.Sin(_angle * x) - _transformOrigin.X * deltaHorizontal * Math.Sin(_angle * x);
+            var left = Canvas.GetLeft(_designerItem) + deltaHorizontal * Math.Cos(_angle * x) + (_transformOrigin.X * deltaHorizontal * (1 - Math.Cos(_angle * x)));
             Canvas.SetTop(_designerItem, top);
             Canvas.SetLeft(_designerItem, left);
             _designerItem.Width -= deltaHorizontal;
@@ -154,8 +156,10 @@ namespace Rotator
             {
                 FlipY();
             }
-            var top = Canvas.GetTop(_designerItem) + deltaVertical * Math.Cos(-_angle) + (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle)));
-            var left = Canvas.GetLeft(_designerItem) + deltaVertical * Math.Sin(-_angle) - (_transformOrigin.Y * deltaVertical * Math.Sin(-_angle));
+            var y = _designerItem.GetTransform<ScaleTransform>(null).ScaleY;
+            var x = _designerItem.GetTransform<ScaleTransform>(null).ScaleX;
+            var top = Canvas.GetTop(_designerItem) + deltaVertical * Math.Cos(-_angle * y) + (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle*y)));
+            var left = Canvas.GetLeft(_designerItem) + deltaVertical * Math.Sin(-_angle * y) - (_transformOrigin.Y * deltaVertical * Math.Sin(-_angle*y));
             Canvas.SetTop(_designerItem, top);
             Canvas.SetLeft(_designerItem, left);
             _designerItem.Height -= deltaVertical;
@@ -169,8 +173,9 @@ namespace Rotator
             {
                 FlipY();
             }
-            var top = Canvas.GetTop(_designerItem) + (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle)));
-            var left = Canvas.GetLeft(_designerItem) - deltaVertical * _transformOrigin.Y * Math.Sin(-_angle);
+            var y = _designerItem.GetTransform<ScaleTransform>(null).ScaleY;
+            var top = Canvas.GetTop(_designerItem) + (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle * y)));
+            var left = Canvas.GetLeft(_designerItem) - deltaVertical * _transformOrigin.Y * Math.Sin(-_angle * y);
             Canvas.SetTop(_designerItem, top);
             Canvas.SetLeft(_designerItem, left);
             _designerItem.Height -= deltaVertical;
