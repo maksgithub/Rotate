@@ -118,7 +118,12 @@ namespace Rotator
 
         private void ResizeRight(double horizontalChange)
         {
-            var deltaHorizontal = Math.Min(horizontalChange, _designerItem.ActualWidth - _designerItem.MinWidth);
+            var d = _designerItem.ActualWidth - _designerItem.MinWidth;
+            var deltaHorizontal = Math.Min(horizontalChange, d);
+            if (horizontalChange > d)
+            {
+                FlipX();
+            }
             var top = Canvas.GetTop(_designerItem) - _transformOrigin.X * deltaHorizontal * Math.Sin(_angle);
             var left = Canvas.GetLeft(_designerItem) + (deltaHorizontal * _transformOrigin.X * (1 - Math.Cos(_angle)));
             Canvas.SetTop(_designerItem, top);
@@ -128,7 +133,12 @@ namespace Rotator
 
         private void ResizeLeft(double horizontalChange)
         {
-            var deltaHorizontal = Math.Min(horizontalChange, _designerItem.ActualWidth - _designerItem.MinWidth);
+            var d = _designerItem.ActualWidth - _designerItem.MinWidth;
+            var deltaHorizontal = Math.Min(horizontalChange, d);
+            if (horizontalChange > d)
+            {
+                FlipX();
+            }
             var top = Canvas.GetTop(_designerItem) + deltaHorizontal * Math.Sin(_angle) - _transformOrigin.X * deltaHorizontal * Math.Sin(_angle);
             var left = Canvas.GetLeft(_designerItem) + deltaHorizontal * Math.Cos(_angle) + (_transformOrigin.X * deltaHorizontal * (1 - Math.Cos(_angle)));
             Canvas.SetTop(_designerItem, top);
@@ -138,7 +148,12 @@ namespace Rotator
 
         private void ResizeTop(double verticalChange)
         {
-            var deltaVertical = Math.Min(verticalChange, _designerItem.ActualHeight - _designerItem.MinHeight);
+            var d = _designerItem.ActualHeight - _designerItem.MinHeight;
+            var deltaVertical = Math.Min(verticalChange, d);
+            if (verticalChange > d)
+            {
+                FlipY();
+            }
             var top = Canvas.GetTop(_designerItem) + deltaVertical * Math.Cos(-_angle) + (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle)));
             var left = Canvas.GetLeft(_designerItem) + deltaVertical * Math.Sin(-_angle) - (_transformOrigin.Y * deltaVertical * Math.Sin(-_angle));
             Canvas.SetTop(_designerItem, top);
@@ -148,12 +163,29 @@ namespace Rotator
 
         private void ResizeBottom(double verticalChange)
         {
-            var deltaVertical = Math.Min(verticalChange, _designerItem.ActualHeight - _designerItem.MinHeight);
+            var d = _designerItem.ActualHeight - _designerItem.MinHeight;
+            var deltaVertical = Math.Min(verticalChange, d);
+            if (verticalChange > d)
+            {
+                FlipY();
+            }
             var top = Canvas.GetTop(_designerItem) + (_transformOrigin.Y * deltaVertical * (1 - Math.Cos(-_angle)));
             var left = Canvas.GetLeft(_designerItem) - deltaVertical * _transformOrigin.Y * Math.Sin(-_angle);
             Canvas.SetTop(_designerItem, top);
             Canvas.SetLeft(_designerItem, left);
             _designerItem.Height -= deltaVertical;
+        }
+
+        private void FlipY()
+        {
+            var scaleTransform = _designerItem.GetTransform<ScaleTransform>(null);
+            scaleTransform.ScaleY *= -1;
+        }
+
+        private void FlipX()
+        {
+            var scaleTransform = _designerItem.GetTransform<ScaleTransform>(null);
+            scaleTransform.ScaleX *= -1;
         }
 
         private double GetCurrentAngle()
