@@ -5,10 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rotator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="MediumPurple">
-        <local:MovingFrame FrameWidth="200"
-                           FrameHeight="200" 
-                           Angle="-245"/>  
+        Title="MainWindow" Height="450" Width="800"
+        Background="Bisque">
+    <Grid Background="Aquamarine" 
+          ClipToBounds="False"
+          Margin="100, 200,0,0"
+          Width="600" 
+          Height="300" 
+          VerticalAlignment="Top"
+          HorizontalAlignment="Left"
+          RenderTransformOrigin="0.5, 0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <TranslateTransform  X="-100" Y="30"/>
+                <RotateTransform Angle="65" CenterY="0"/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <local:MovingFrame FrameWidth="150"
+                           FrameHeight="200"
+                           X="0"
+                           Y="0"
+                           Angle="0"/>
     </Grid>
 </Window>
